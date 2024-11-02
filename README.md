@@ -40,20 +40,31 @@ python graph_visualization.py
     Пример использования:
    
     Пример матрицы смежности и меток узлов представлен ниже. Выполнив данный код, вы получите граф:
-   
-         python
-        adj_matrix = [
-            [0, 1, 0, 0, 0, 1],  # узел а
-            [1, 0, 1, 0, 0, 0],  # узел б
-            [0, 1, 0, 1, 0, 0],  # узел в
-            [0, 0, 1, 0, 1, 0],  # узел г
-            [0, 0, 0, 1, 0, 1],  # узел д
-            [1, 0, 0, 0, 1, 0]   # узел е
-        ]
 
-        labels = {0: "а", 1: "б", 2: "в", 3: "г", 4: "д", 5: "е"}
+       import numpy as np
+       import networkx as nx
+       import matplotlib.pyplot as plt
+
+        def draw_graph(adj_matrix, labels):
+            G = nx.from_numpy_array(np.array(adj_matrix))
+            nx.draw(G, pos=nx.circular_layout(G), with_labels=True, labels=labels, 
+            node_color='lightblue', node_size=800, font_size=16, edge_color='gray')
+        plt.title("Граф в форме круга")
+        plt.show()
+
+        # Матрица смежности и метки узлов
+        adj_matrix = [
+        [0, 1, 0, 0, 0, 1],
+        [1, 0, 1, 0, 0, 0],
+        [0, 1, 0, 1, 0, 0],
+        [0, 0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 0, 1],
+        [1, 0, 0, 0, 1, 0]
+        ]
+        labels = {i: chr(1072 + i) for i in range(6)}
 
         draw_graph(adj_matrix, labels)
+
 Запуск этого примера отобразит граф, где узлы и их связи визуализированы в круговой диаграмме.
 
 5. Инструкция по совместной работе (Contribution)
@@ -69,7 +80,7 @@ git clone https://github.com/MegaCraTex/Project_1
 git checkout -b feature-name
     4.Внесите изменения и добавьте их с помощью команды git add.
     
-    5.Закоммитьте изменения:
+5.Закоммитьте изменения:
  
 
 git commit -m "Добавлено: -----"
